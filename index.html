@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI内容实验室 - 智能生成高质量内容</title>
+    <meta name="description" content="AI内容实验室使用人工智能技术自动生成高质量文章、博客、产品描述等内容，帮助您节省时间，提升效率。">
+    <meta name="keywords" content="AI内容生成,人工智能写作,自动文章生成,内容创作,AI写作助手">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        /* 导航栏 */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        /* 主要内容 */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* 服务部分 */
+        .services {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: #333;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: #f8f9fa;
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        /* 文章部分 */
+        .articles {
+            padding: 80px 0;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .article-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .article-content {
+            padding: 30px;
+        }
+        
+        .article-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .article-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .read-more {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        /* 底部 */
+        footer {
+            background: #333;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p {
+            color: #bbb;
+            line-height: 1.8;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .service-grid, .article-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="container">
+            <div class="logo">AI内容实验室</div>
+            <div class="tagline">人工智能驱动的内容创作平台</div>
+        </div>
+    </header>
+
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">aicontentlab.cn</div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#services">服务</a></li>
+                <li><a href="#articles">文章</a></li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>让AI为您创作高质量内容</h1>
+                <p>我们使用最先进的人工智能技术，自动生成文章、博客、产品描述、营销文案等内容。节省您的时间，提升创作效率。</p>
+                <a href="#services" class="cta-button">了解我们的服务</a>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="section-title">我们的AI内容服务</h2>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <div class="service-icon">📝</div>
+                        <h3>文章写作</h3>
+                        <p>AI生成高质量文章，涵盖科技、生活、健康、教育等多个领域，支持SEO优化。</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💼</div>
+                        <h3>商业文案</h3>
+                        <p>产品描述、广告文案、营销内容、企业宣传等商业用途的内容创作。</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📱</div>
+                        <h3>社交媒体</h3>
+                        <p>微博、微信、小红书、抖音等平台的文案创作，吸引更多关注和互动。</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎯</div>
+                        <h3>定制内容</h3>
+                        <p>根据您的具体需求，定制专属的内容创作方案，满足个性化需求。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="articles" class="articles">
+            <div class="container">
+                <h2 class="section-title">最新AI生成文章</h2>
+                <div class="article-grid">
+                    <div class="article-card">
+                        <div class="article-image">🤖</div>
+                        <div class="article-content">
+                            <h3>人工智能如何改变内容创作行业</h3>
+                            <p>探索AI技术在内容创作领域的应用，以及它如何提高效率、降低成本并创造新的可能性。</p>
+                            <a href="#" class="read-more">阅读全文 →</a>
+                        </div>
+                    </div>
+                    <div class="article-card">
+                        <div class="article-image">🚀</div>
+                        <div class="article-content">
+                            <h3>2026年内容营销的十大趋势</h3>
+                            <p>了解未来内容营销的发展方向，包括AI生成内容、个性化推荐、视频内容等趋势。</p>
+                            <a href="#" class="read-more">阅读全文 →</a>
+                        </div>
+                    </div>
+                    <div class="article-card">
+                        <div class="article-image">💡</div>
+                        <div class="article-content">
+                            <h3>如何用AI提升写作效率</h3>
+                            <p>实用的AI写作工具和技巧，帮助您更快更好地完成各种写作任务。</p>
+                            <a href="#" class="read-more">阅读全文 →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部 -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <p>AI内容实验室致力于利用人工智能技术革新内容创作方式，为客户提供高效、优质的内容解决方案。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>联系方式</h3>
+                    <p>邮箱：contact@aicontentlab.cn</p>
+                    <p>微信：AI_Content_Lab</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <p><a href="#home" style="color: #bbb; text-decoration: none;">首页</a></p>
+                    <p><a href="#services" style="color: #bbb; text-decoration: none;">服务</a></p>
+                    <p><a href="#articles" style="color: #bbb; text-decoration: none;">文章</a></p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 AI内容实验室 (aicontentlab.cn) 版权所有</p>
+                <p>本网站内容由人工智能生成</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 简单的访问统计
+        window.addEventListener('load', function() {
+            console.log('AI内容实验室网站已加载');
+            // 这里可以添加访问统计代码
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Sitemap: https://aicontentlab.cn/sitemap.xml
+
+# AI内容实验室
